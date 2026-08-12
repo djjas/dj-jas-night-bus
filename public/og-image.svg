@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#0B0A0C"/>
+  <rect x="0" y="0" width="1200" height="630" fill="none" stroke="#2A2622" stroke-width="2"/>
+  <rect x="60" y="60" width="1080" height="56" rx="4" fill="#141212" stroke="#2A2622"/>
+  <text x="90" y="97" font-family="IBM Plex Mono, monospace" font-size="20" letter-spacing="4" fill="#E8A33D">227 TRACKS &#183; NON-STOP &#183; BOARDING NOW</text>
+  <text x="90" y="300" font-family="Georgia, serif" font-size="150" font-weight="700" fill="#F3ECE0">DJ JAS</text>
+  <text x="90" y="400" font-family="Georgia, serif" font-size="72" font-weight="600" fill="#E8A33D" letter-spacing="4">THE NIGHT BUS</text>
+  <text x="90" y="470" font-family="Georgia, serif" font-style="italic" font-size="34" fill="#8C8377">A one-way ride through Bollywood.</text>
+  <circle cx="1080" cy="540" r="6" fill="#C1432A"/>
+  <text x="1100" y="546" font-family="IBM Plex Mono, monospace" font-size="16" fill="#8C8377">LIVE</text>
+</svg>
