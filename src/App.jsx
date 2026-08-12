@@ -32,11 +32,13 @@ export default function App() {
       <Playlist nowPlayingId={nowPlaying?.id ?? null} onPlay={handlePlay} />
       <Driver />
       <Footer />
-      <NowPlaying
-        track={nowPlaying}
-        onNext={() => step(1)}
-        onPrev={() => step(-1)}
-      />
+      {nowPlaying && (
+        <NowPlaying
+          track={nowPlaying}
+          onNext={() => step(1)}
+          onPrev={() => step(-1)}
+        />
+      )}
     </div>
   );
 }
