@@ -1,10 +1,12 @@
 import { useMemo, useState } from "react";
+import { ListMusic, ChevronUp } from "lucide-react";
 import tracks from "../data/tracks";
 import FilterBar from "./FilterBar";
 import LanguageToggle from "./LanguageToggle";
 import TrackRow from "./TrackRow";
 
 export default function Playlist({ nowPlayingId, onPlay }) {
+  const [isOpen, setIsOpen] = useState(false);
   const [activeFilters, setActiveFilters] = useState(new Set());
   const [activeLanguage, setActiveLanguage] = useState("all");
 
@@ -27,6 +29,29 @@ export default function Playlist({ nowPlayingId, onPlay }) {
     });
   }, [activeFilters, activeLanguage]);
 
+  if (!isOpen) {
+    return (
+      <section
+        id="playlist"
+        className="max-w-5xl mx-auto px-6 sm:px-10 py-24 sm:py-32 flex flex-col items-center text-center"
+      >
+        <p className="font-mono text-[11px] tracking-[0.3em] text-dust mb-3">
+          THE ROUTE
+        </p>
+        <h2 className="font-display text-2xl sm:text-3xl text-paper mb-8 text-balance">
+          {tracks.length} stops, all on one line.
+        </h2>
+        <button
+          onClick={() => setIsOpen(true)}
+          className="inline-flex items-center gap-2 border border-marigold/40 text-marigold px-6 py-3.5 font-mono text-xs tracking-[0.2em] hover:bg-marigold hover:text-night transition-colors duration-300"
+        >
+          <ListMusic size={14} />
+          SEE THE ROUTE
+        </button>
+      </section>
+    );
+  }
+
   return (
     <section id="playlist" className="max-w-5xl mx-auto px-6 sm:px-10 py-20 sm:py-28">
       <div className="flex items-end justify-between gap-6 mb-8 flex-wrap">
@@ -38,7 +63,17 @@ export default function Playlist({ nowPlayingId, onPlay }) {
             Every stop on the line
           </h2>
         </div>
-        <LanguageToggle activeLanguage={activeLanguage} onChange={setActiveLanguage} />
+        <div className="flex items-center gap-4">
+          <LanguageToggle activeLanguage={activeLanguage} onChange={setActiveLanguage} />
+          <button
+            onClick={() => setIsOpen(false)}
+            aria-label="Hide the route"
+            className="inline-flex items-center gap-1.5 font-mono text-[11px] tracking-[0.15em] text-dust hover:text-paper transition-colors"
+          >
+            <ChevronUp size={14} />
+            HIDE
+          </button>
+        </div>
       </div>
 
       <div className="mb-10">
