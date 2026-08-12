@@ -2,18 +2,19 @@ import { useState } from "react";
 import tracks from "./data/tracks";
 import TickerBar from "./components/TickerBar";
 import Hero from "./components/Hero";
-import Playlist from "./components/Playlist";
+import RoutePanel from "./components/RoutePanel";
 import NowPlaying from "./components/NowPlaying";
 import Driver from "./components/Driver";
 import Footer from "./components/Footer";
 
 export default function App() {
-  const [nowPlayingId, setNowPlayingId] = useState(null);
+  const [nowPlayingId, setNowPlayingId] = useState(tracks[0].id);
+  const [isPanelOpen, setIsPanelOpen] = useState(false);
 
-  const nowPlaying = tracks.find((t) => t.id === nowPlayingId) ?? null;
+  const nowPlaying = tracks.find((t) => t.id === nowPlayingId) ?? tracks[0];
 
   const handlePlay = (track) => {
-    setNowPlayingId((current) => (current === track.id ? null : track.id));
+    setNowPlayingId(track.id);
   };
 
   const step = (direction) => {
@@ -26,19 +27,26 @@ export default function App() {
   };
 
   return (
-    <div className={nowPlaying ? "pb-28 sm:pb-28" : ""}>
+    <div className="pb-28 sm:pb-28">
       <TickerBar />
-      <Hero trackCount={tracks.length} />
-      <Playlist nowPlayingId={nowPlaying?.id ?? null} onPlay={handlePlay} />
+      <Hero trackCount={tracks.length} onOpenRoute={() => setIsPanelOpen(true)} />
       <Driver />
       <Footer />
-      {nowPlaying && (
-        <NowPlaying
-          track={nowPlaying}
-          onNext={() => step(1)}
-          onPrev={() => step(-1)}
-        />
-      )}
+
+      <RoutePanel
+        isOpen={isPanelOpen}
+        onClose={() => setIsPanelOpen(false)}
+        nowPlayingId={nowPlaying.id}
+        onPlay={handlePlay}
+      />
+
+      <NowPlaying
+        track={nowPlaying}
+        onNext={() => step(1)}
+        onPrev={() => step(-1)}
+        isPanelOpen={isPanelOpen}
+        onTogglePanel={() => setIsPanelOpen((open) => !open)}
+      />
     </div>
   );
 }
