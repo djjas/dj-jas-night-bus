@@ -1,11 +1,7 @@
-import { Bus, ArrowDown, Radio } from "lucide-react";
+import { Bus, ListMusic, Radio } from "lucide-react";
 import NightHighway from "./NightHighway";
 
-export default function Hero({ trackCount }) {
-  const scrollToPlaylist = () => {
-    document.getElementById("playlist")?.scrollIntoView({ behavior: "smooth" });
-  };
-
+export default function Hero({ trackCount, onOpenRoute }) {
   return (
     <header className="relative min-h-[100svh] flex flex-col overflow-hidden">
       {/* dashboard top bar */}
@@ -53,11 +49,11 @@ export default function Hero({ trackCount }) {
         </p>
 
         <button
-          onClick={scrollToPlaylist}
+          onClick={onOpenRoute}
           className="group mt-8 sm:mt-10 inline-flex items-center gap-2 border border-marigold/40 text-marigold px-5 py-3 font-mono text-xs tracking-[0.2em] hover:bg-marigold hover:text-night transition-colors duration-300"
         >
-          BOARD THE BUS
-          <ArrowDown size={14} className="group-hover:translate-y-0.5 transition-transform" />
+          SEE THE ROUTE
+          <ListMusic size={14} />
         </button>
       </div>
 
